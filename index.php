@@ -12,12 +12,7 @@ require_once APP_PATH . 'Model.php';
 require_once APP_PATH . 'View.php';
 require_once APP_PATH . 'Registro.php';
 
-//echo '<pre>';
-//print_r(get_required_files());
-// $r=new Request();
-// echo $r->getControlador().'<br>';
-// echo $r->getMetodo().'<br>';
-// print_r($r->getArgs());
+#echo '<pre>';
 try {
     Bootstrap::run(new Request);
 } catch (Exception $e) {
