@@ -2,7 +2,7 @@
 
 define('BASE_URL', 'http://localhost/framework-dlancedu/');
 define('DEFAULT_CONTROLLER', 'index');
-define('DEFAULT_LAYOUT', 'default');
+define('DEFAULT_LAYOUT', 'layout1');
 
 define('APP_NAME', 'Mi Framework');
 define('APP_SLOGAN', 'mi primer framework php y mvc...');
