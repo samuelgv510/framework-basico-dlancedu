@@ -8,7 +8,15 @@ class postModel extends Model
     }
     public function getPosts()
     {
-        $post=$this->_db->query("select * from posts"); 
+        $post = $this->_db->query("select * from posts");
         return $post->fetchAll();
+    }
+    public function insertarPost($titulo, $cuerpo)
+    {
+        $this->_db->prepare("INSERT INTO posts VALUES(null, :titulo, :cuerpo)")
+            ->execute(array(
+                ':titulo' => $titulo,
+                ':cuerpo' => $cuerpo
+            ));
     }
 }

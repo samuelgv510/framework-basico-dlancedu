@@ -12,24 +12,52 @@ abstract class Controller
 
     protected function loadModel($modelo)
     {
-        $modelo=$modelo.'Model';
-        $rutaModelo=ROOT.'models'.DS.$modelo.'.php';
+        $modelo = $modelo . 'Model';
+        $rutaModelo = ROOT . 'models' . DS . $modelo . '.php';
 
-        if(is_readable($rutaModelo)){
+        if (is_readable($rutaModelo)) {
             require_once $rutaModelo;
-            $modelo=new $modelo;
+            $modelo = new $modelo;
             return $modelo;
-        }else{
+        } else {
             throw new Exception('Eror de modelo');
         }
     }
     protected function getLibrary($libreria)
     {
-        $rutaLibreria=ROOT.'libs'.DS.$libreria.'.php';
-        if(is_readable($rutaLibreria)){
+        $rutaLibreria = ROOT . 'libs' . DS . $libreria . '.php';
+        if (is_readable($rutaLibreria)) {
             require_once $rutaLibreria;
-        }else{
+        } else {
             throw new Exception('Error de libreria');
+        }
+    }
+    protected function getTexto($clave)
+    {
+        if (isset($_POST[$clave]) && !empty($_POST[$clave])) {
+            $_POST[$clave] = htmlspecialchars($_POST[$clave], ENT_QUOTES);
+            return $_POST[$clave];
+        } else {
+            return '';
+        }
+    }
+    protected function getInt($clave)
+    {
+        if (isset($_POST[$clave]) && !empty($_POST[$clave])) {
+            $_POST[$clave] = filter_input(INPUT_POST, $clave, FILTER_VALIDATE_INT);
+            return $_POST[$clave];
+        } else {
+            return 0;
+        }
+    }
+    protected function redireccionar($ruta = false)
+    {
+        if ($ruta) {
+            header('Location:' . BASE_URL . $ruta);
+            exit;
+        } else {
+            header('Location:' . BASE_URL);
+            exit;
         }
     }
 }

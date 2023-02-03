@@ -7,6 +7,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php if (isset($this->titulo)) echo $this->titulo; ?></title>
     <link href="<?php echo $_layoutParams['ruta_css']; ?>estilos.css" rel="stylesheet" type="text/css" />
+    <script src="<?php echo BASE_URL; ?>public/js/jquery-3.6.3.js" type="text/javascript"></script>
+    <script src="<?php echo BASE_URL; ?>public/js/jquery.validate.js" type="text/javascript"></script>
+    <?php if (isset($_layoutParams['js']) && count($_layoutParams['js'])) : ?>
+        <?php for ($i = 0; $i < count($_layoutParams['js']); $i++) : ?>
+            <script src="<?php echo $_layoutParams['js'][$i]; ?>" type="text/javascript"></script>
+        <?php endfor; ?>
+    <?php endif; ?>
 </head>
 
 <body>
@@ -35,3 +42,9 @@
             </div>
         </div>
         <div id="content">
+            <noscript>
+                <p>Para el correcto funcionamiento debe tener el soporte de javascript habilitado</p>
+            </noscript>
+            <div id="error">
+                <?php if (isset($this->_error)) echo $this->_error; ?>
+            </div>
